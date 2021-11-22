@@ -1,56 +1,76 @@
 package com.julio.stonepaperscissorslizardspock
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import com.julio.stonepaperscissorslizardspock.databinding.ActivityMainBinding
+import com.julio.stonepaperscissorslizardspock.databinding.FragmentGameBinding
 
-class MainActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    /*
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+class GameFragment : Fragment() {
 
-        val textResult : TextView = binding.textViewTextResult
-        val imageViewYourMove: ImageView = binding.imageViewYourMove
-        val imageViewComputerMove: ImageView = binding.imageViewComputerMove
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        return inflater.inflate(R.layout.fragment_game, container, false)
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+       //val binding = FragmentGameBinding.inflate(layoutInflater)
+
+        val textResult : TextView =  view.findViewById(R.id.textView_text_result)
+        val imageViewYourMove: ImageView = view.findViewById(R.id.imageView_your_move)
+        val imageViewComputerMove: ImageView = view.findViewById(R.id.imageView_computer_move)
         var numberResult : Int
 
-        binding.btnSpock.setOnClickListener{
+        val btnSpock = view.findViewById<ImageButton>(R.id.btn_spock)
+        val btnLizard = view.findViewById<ImageButton>(R.id.btn_lizard)
+        val btnScissors = view.findViewById<ImageButton>(R.id.btn_scissors)
+        val btnPaper = view.findViewById<ImageButton>(R.id.btn_paper)
+        val btnRock = view.findViewById<ImageButton>(R.id.btn_rock)
+
+
+        btnSpock.setOnClickListener{
             imageViewYourMove.setImageResource(R.drawable.spock)
             computerPlay(imageViewComputerMove)
             numberResult = computerPlay(imageViewComputerMove)
             textResult.text = checkResult("Spock", numberResult)
+
         }
 
-        binding.btnLizard.setOnClickListener {
+        btnLizard.setOnClickListener {
             imageViewYourMove.setImageResource(R.drawable.lizard)
             computerPlay(imageViewComputerMove)
             numberResult = computerPlay(imageViewComputerMove)
             textResult.text = checkResult("Lizard", numberResult)
         }
 
-       binding.btnScissors.setOnClickListener {
+        btnScissors.setOnClickListener {
             imageViewYourMove.setImageResource(R.drawable.scissors)
             computerPlay(imageViewComputerMove)
             numberResult = computerPlay(imageViewComputerMove)
             textResult.text = checkResult("Scissors", numberResult)
         }
 
-        binding.btnPaper.setOnClickListener {
+        btnPaper.setOnClickListener {
             imageViewYourMove.setImageResource(R.drawable.paper)
             computerPlay(imageViewComputerMove)
             numberResult = computerPlay(imageViewComputerMove)
             textResult.text = checkResult("Papper", numberResult)
         }
 
-        binding.btnRock.setOnClickListener {
+        btnRock.setOnClickListener {
             imageViewYourMove.setImageResource(R.drawable.rock)
             computerPlay(imageViewComputerMove)
             numberResult = computerPlay(imageViewComputerMove)
@@ -144,8 +164,5 @@ class MainActivity : AppCompatActivity() {
         }
         return message
     }
+ }
 
-
- */
-    }
-}
