@@ -29,6 +29,10 @@ class StartFragment : Fragment() {
         }
 
 
+//        btn_show_result.setOnClickListener {
+//            val action = StartFragmentDirections.homeToResult()
+//            findNavController().navigate(action)
+//        }
 
     }
 

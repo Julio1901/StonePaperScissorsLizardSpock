@@ -17,5 +17,18 @@
         android:id="@+id/gameFragment"
         android:name="com.julio.stonepaperscissorslizardspock.ui.GameFragment"
         android:label="fragment_game"
-        tools:layout="@layout/fragment_game" />
+        tools:layout="@layout/fragment_game" >
+        <action
+            android:id="@+id/action_game_to_result"
+            app:destination="@id/resultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.julio.stonepaperscissorslizardspock.ResultFragment"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result" >
+        <action
+            android:id="@+id/action_resulto_to_game_again"
+            app:destination="@id/gameFragment" />
+    </fragment>
 </navigation>

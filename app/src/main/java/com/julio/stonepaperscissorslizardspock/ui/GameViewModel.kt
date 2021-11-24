@@ -10,6 +10,19 @@ class GameViewModel (): ViewModel(){
     val yourMove = MutableLiveData<Int>()
     val computerMove = MutableLiveData<Int>()
     val playResult = MutableLiveData<String>()
+    val listOfResults = mutableListOf<String>()
+    var gameNumber =  MutableLiveData<Int>(1)
+
+
+
+    fun restartGameValues(){
+       //blank
+        yourMove.value = 0
+        computerMove.value =0
+        playResult.value = ""
+        listOfResults.clear()
+        gameNumber.value = 1
+    }
 
 
     fun setUserPlay(choice : String){
@@ -21,7 +34,6 @@ class GameViewModel (): ViewModel(){
             "Rock" -> yourMove.value = R.drawable.rock
         }
     }
-
 
     fun setComputerPlay() : Int {
 
@@ -53,60 +65,99 @@ class GameViewModel (): ViewModel(){
     }
 
     fun checkResult(yourMove : String, result : Int){
-
+        //TODO:Refactor this
         when(yourMove){
             "Spock" -> {
                 if (result == 3 || result == 5){
                     playResult.value = "Winner"
+                    addResultToHistory(gameNumber.value!!,"Winner")
+
+
+                    gameNumber.value = gameNumber.value!! +1
                 }else if(result == 1){
                     playResult.value =  "Draw"
+                    addResultToHistory(gameNumber.value!!," Draw")
+                    gameNumber.value = gameNumber.value!! +1
                 }
                 else{
                     playResult.value =  "Loser"
+                    addResultToHistory(gameNumber.value!!,"Loser")
+                    gameNumber.value = gameNumber.value!! +1
                 }
             }
             "Lizard" -> {
                 if (result == 1 || result == 4){
                     playResult.value = "Winner"
+                    addResultToHistory(gameNumber.value!!," Winner")
+                    gameNumber.value = gameNumber.value!! +1
                 }else if(result == 2){
                     playResult.value = "Draw"
+                    addResultToHistory(gameNumber.value!!,"Draw")
+                    gameNumber.value = gameNumber.value!! +1
                 }
                 else{
                     playResult.value =  "Loser"
+                    addResultToHistory(gameNumber.value!!," Loser")
+                    gameNumber.value = gameNumber.value!! +1
                 }
             }
             "Scissors" -> {
                 if (result == 4 || result == 2){
                     playResult.value =  "Winner"
+                    addResultToHistory(gameNumber.value!!," Winner")
+                    gameNumber.value = gameNumber.value!! +1
                 }else if(result == 3){
                     playResult.value =  "Draw"
+                    addResultToHistory(gameNumber.value!!," Draw")
+                    gameNumber.value = gameNumber.value!! +1
                 }
                 else{
                     playResult.value =  "Loser"
+                    addResultToHistory(gameNumber.value!!," Loser")
+                    gameNumber.value = gameNumber.value!! +1
                 }
             }
             "Papper" ->{
                 if (result == 1 || result == 5 ){
                     playResult.value =  "Winner"
+                    addResultToHistory(gameNumber.value!!," Winner")
+                    gameNumber.value = gameNumber.value!! +1
                 }else if(result == 4){
                     playResult.value = "Draw"
+                    addResultToHistory(gameNumber.value!!,"Draw")
+                    gameNumber.value = gameNumber.value!! +1
                 }
                 else{
                     playResult.value =  "Loser"
+                    addResultToHistory(gameNumber.value!!,"Loser")
+                    gameNumber.value = gameNumber.value!! +1
                 }
             }
             "Rock" ->{
                 if (result == 2 || result == 3){
                     playResult.value =  "Winner"
+                    addResultToHistory(gameNumber.value!!," Winner")
+                    gameNumber.value = gameNumber.value!! +1
                 }else if(result == 5){
                     playResult.value =  "Draw"
+                    addResultToHistory(gameNumber.value!!,"Draw")
+                    gameNumber.value = gameNumber.value!! +1
                 }
                 else {
                     playResult.value = "Loser"
+                    addResultToHistory(gameNumber.value!!,"Loser")
+                    gameNumber.value = gameNumber.value!! +1
                 }
             }
         }
 
     }
+
+    //Use this later
+    fun addResultToHistory( gameNumber : Int, result: String){
+        listOfResults.add("Result of match number $gameNumber: Player $result ")
+    }
+
+
 
 }

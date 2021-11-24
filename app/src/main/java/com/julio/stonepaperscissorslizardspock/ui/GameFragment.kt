@@ -8,14 +8,17 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.julio.stonepaperscissorslizardspock.R
+import com.julio.stonepaperscissorslizardspock.StartFragmentDirections
 
 
 class GameFragment : Fragment() {
 
-    val gameViewModel : GameViewModel by viewModels()
+    val gameViewModel : GameViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -80,6 +83,15 @@ class GameFragment : Fragment() {
 
         gameViewModel.playResult.observe(viewLifecycleOwner, Observer {
             textResult.text = it
+        })
+
+
+        //TODO: Pegar informação da lista do model
+        gameViewModel.gameNumber.observe(viewLifecycleOwner, Observer {
+            if (it > 3){
+                val action = GameFragmentDirections.actionGameToResult()
+                findNavController().navigate(action)
+            }
         })
     }
  }
